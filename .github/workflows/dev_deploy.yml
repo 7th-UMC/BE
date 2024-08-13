@@ -52,8 +52,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACTION_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_ACTION_SECRET_ACCESS_KEY }}
-          application_name: cicdTest-dev # 바꿔야됨
-          environment_name: CicdTest-dev-env # 바꿔야 됨
+          application_name: hsuumc-dev
+          environment_name: HsuUmc-dev-env
           version_label: github-action-${{ steps.current-time.outputs.formattedTime }}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
