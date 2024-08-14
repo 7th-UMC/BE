@@ -48,7 +48,6 @@ jobs:
           cp Procfile deploy/Procfile
           cp -r .ebextensions-dev deploy/.ebextensions
           cp -r .platform deploy/.platform
-          cp src/main/resources/application-dev.yml deploy/application-dev.yml
           cd deploy && zip -r deploy.zip .
 
       - name: Beanstalk Deploy
