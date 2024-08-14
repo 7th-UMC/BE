@@ -1,10 +1,13 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://release-umc.c1w882c2qqby.ap-northeast-2.rds.amazonaws.com:3306/umc?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username:
-    password:
+    url: ${AWS_DB_URL}
+    username: ${AWS_DB_USERNAME}
+    password: ${AWS_DB_PASSWORD}
 
   jpa:
     hibernate:
       ddl-auto: create
+
+
+
