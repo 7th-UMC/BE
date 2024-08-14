@@ -1,7 +1,6 @@
 spring:
   profiles:
-    include: dev, local
-    active: local
+    active: ${SPRING_PROFILES_ACTIVE}
 
 api:
   server:
