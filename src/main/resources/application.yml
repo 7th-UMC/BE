@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    include: dev, local
+    active: local
+
+api:
+  server:
+    url: http://localhost:8080
