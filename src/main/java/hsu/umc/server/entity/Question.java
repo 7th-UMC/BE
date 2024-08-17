@@ -12,7 +12,7 @@ import lombok.*;
 public class Question extends BaseEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long QuestionId;
 
     private Category category;
