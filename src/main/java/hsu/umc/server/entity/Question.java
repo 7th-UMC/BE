@@ -1,12 +1,17 @@
 package hsu.umc.server.entity;
 
+import hsu.umc.server.web.dto.QuestionRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 
 @Entity
 @Getter
 @Builder
+@DynamicUpdate
+@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Question extends BaseEntity {
@@ -15,6 +20,7 @@ public class Question extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long QuestionId;
 
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     private String title;
@@ -30,4 +36,10 @@ public class Question extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "answer_id")
     private Answer answer;
+
+    public void update(QuestionRequestDto.CreateQuestionRequestDto request) {
+        this.title = request.getTitle();
+        this.content = request.getContent();
+        this.category = Category.fromValue(request.getCategoryId());
+    }
 }
