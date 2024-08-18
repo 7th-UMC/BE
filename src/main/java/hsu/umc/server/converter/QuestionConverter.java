@@ -7,7 +7,6 @@ import hsu.umc.server.web.dto.QuestionResponseDto;
 
 public class QuestionConverter {
     public static Question toQuestion(QuestionRequestDto.CreateQuestionRequestDto request) {
-        System.out.println("request.getCategoryId() = " + Category.fromValue(request.getCategoryId()));
 
         return Question.builder()
                 .title(request.getTitle())
@@ -21,6 +20,17 @@ public class QuestionConverter {
         return QuestionResponseDto.CreateResponseDto.builder()
                 .questionId(question.getQuestionId())
                 .createdAt(question.getCreatedAt())
+                .build();
+    }
+
+    public static QuestionResponseDto.SearchResponseDto toSearchResponseDto(Question question) {
+        return QuestionResponseDto.SearchResponseDto.builder()
+                .title(question.getTitle())
+                .content(question.getContent())
+                .isAnswered(question.getIsAnswered())
+                .answer(question.getAnswer())
+                .createdAt(question.getCreatedAt())
+                .updatedAt(question.getUpdatedAt())
                 .build();
     }
 }

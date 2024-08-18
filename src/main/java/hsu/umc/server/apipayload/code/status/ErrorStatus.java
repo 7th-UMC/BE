@@ -14,7 +14,10 @@ public enum ErrorStatus implements ErrorCode {
     _BAD_REQUEST(HttpStatus.BAD_REQUEST,"COMMON400","잘못된 요청입니다."),
     _UNAUTHORIZED(HttpStatus.UNAUTHORIZED,"COMMON401","인증이 필요합니다."),
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
-    _NOT_FOUND(HttpStatus.NOT_FOUND, "COMMON404", "요청을 찾을 수 없습니다.");
+    _NOT_FOUND(HttpStatus.NOT_FOUND, "COMMON404", "요청을 찾을 수 없습니다."),
+
+    //질문 관련 응답
+    QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND, "QUESTION4001", "아이디에 해당하는 질문을 찾을 수 업습니다.");
 
 
     private final HttpStatus httpStatus;

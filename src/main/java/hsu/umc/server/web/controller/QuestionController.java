@@ -8,10 +8,7 @@ import hsu.umc.server.service.QuestionQueryService;
 import hsu.umc.server.web.dto.QuestionRequestDto;
 import hsu.umc.server.web.dto.QuestionResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/question")
@@ -21,11 +18,21 @@ public class QuestionController {
     private final QuestionQueryService questionQueryService;
     private final QuestionCommandService questionCommandService;
 
+    //질문 생성 API
     @PostMapping("")
     public ApiResponse<QuestionResponseDto.CreateResponseDto> addQuestion(@RequestBody QuestionRequestDto.CreateQuestionRequestDto requestDto) {
 
         Question question = questionCommandService.addQuestion(requestDto);
 
         return ApiResponse.onSuccess(QuestionConverter.toCreateResponseDto(question));
+    }
+
+    //질문 단건 조회 API
+    @GetMapping("/{question-id}")
+    public ApiResponse<QuestionResponseDto.SearchResponseDto> getQuestion(@PathVariable("question-id") Long questionId) {
+
+        Question question = questionQueryService.searchQuestion(questionId);
+
+        return ApiResponse.onSuccess(QuestionConverter.toSearchResponseDto(question));
     }
 }
