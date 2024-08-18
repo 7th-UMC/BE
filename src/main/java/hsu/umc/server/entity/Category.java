@@ -13,4 +13,12 @@ public enum Category {
         this.value = value;
     }
 
+    public static Category fromValue(int value) {
+        for (Category category : Category.values()) {
+            if (category.getValue() == value) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("Unknown value: " + value);
+    }
 }

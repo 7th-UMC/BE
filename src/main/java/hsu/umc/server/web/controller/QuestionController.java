@@ -1,9 +1,31 @@
 package hsu.umc.server.web.controller;
 
+import hsu.umc.server.apipayload.ApiResponse;
+import hsu.umc.server.converter.QuestionConverter;
+import hsu.umc.server.entity.Question;
+import hsu.umc.server.service.QuestionCommandService;
+import hsu.umc.server.service.QuestionQueryService;
+import hsu.umc.server.web.dto.QuestionRequestDto;
+import hsu.umc.server.web.dto.QuestionResponseDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api/question")
+@RequiredArgsConstructor
 public class QuestionController {
 
+    private final QuestionQueryService questionQueryService;
+    private final QuestionCommandService questionCommandService;
 
+    @PostMapping("")
+    public ApiResponse<QuestionResponseDto.CreateResponseDto> addQuestion(@RequestBody QuestionRequestDto.CreateQuestionRequestDto requestDto) {
+
+        Question question = questionCommandService.addQuestion(requestDto);
+
+        return ApiResponse.onSuccess(QuestionConverter.toCreateResponseDto(question));
+    }
 }

@@ -15,6 +15,7 @@ public class Question extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long QuestionId;
 
+    @Enumerated(EnumType.STRING)
     private Category category;
 
     private String title;
