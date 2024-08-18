@@ -5,6 +5,8 @@ import hsu.umc.server.apipayload.exception.handler.QuestionHandler;
 import hsu.umc.server.entity.Question;
 import hsu.umc.server.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,5 +23,11 @@ public class QuestionQueryServiceImpl implements QuestionQueryService{
         return questionRepository.findById(questionId)
                 .orElseThrow(() -> new QuestionHandler(ErrorStatus.QUESTION_NOT_FOUND));
 
+    }
+
+    @Override
+    public Page<Question> searchQuestionList(Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, 10);
+        return questionRepository.findAll(pageRequest);
     }
 }

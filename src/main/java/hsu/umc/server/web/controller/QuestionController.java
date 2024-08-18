@@ -8,6 +8,7 @@ import hsu.umc.server.service.QuestionQueryService;
 import hsu.umc.server.web.dto.QuestionRequestDto;
 import hsu.umc.server.web.dto.QuestionResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,5 +35,13 @@ public class QuestionController {
         Question question = questionQueryService.searchQuestion(questionId);
 
         return ApiResponse.onSuccess(QuestionConverter.toSearchResponseDto(question));
+    }
+
+    @GetMapping("")
+    public ApiResponse<QuestionResponseDto.findAllQuestionResponseDto> getAllQuestions(@RequestParam(name = "page") Integer page) {
+
+        Page<Question> questions = questionQueryService.searchQuestionList(page);
+
+        return ApiResponse.onSuccess(QuestionConverter.tofindAllQuestionResponseDto(questions));
     }
 }

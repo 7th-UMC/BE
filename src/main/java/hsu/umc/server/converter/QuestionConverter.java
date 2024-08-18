@@ -4,6 +4,10 @@ import hsu.umc.server.entity.Category;
 import hsu.umc.server.entity.Question;
 import hsu.umc.server.web.dto.QuestionRequestDto;
 import hsu.umc.server.web.dto.QuestionResponseDto;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuestionConverter {
     public static Question toQuestion(QuestionRequestDto.CreateQuestionRequestDto request) {
@@ -31,6 +35,21 @@ public class QuestionConverter {
                 .answer(question.getAnswer())
                 .createdAt(question.getCreatedAt())
                 .updatedAt(question.getUpdatedAt())
+                .build();
+    }
+
+    public static QuestionResponseDto.findAllQuestionResponseDto tofindAllQuestionResponseDto(Page<Question> questions) {
+        List<QuestionResponseDto.SearchResponseDto> searchResponseDto = questions.getContent().stream()
+                .map(QuestionConverter::toSearchResponseDto)
+                .toList();
+
+        return QuestionResponseDto.findAllQuestionResponseDto.builder()
+                .questionList(searchResponseDto)
+                .isFirst(questions.isFirst())
+                .isLast(questions.isLast())
+                .listSize(questions.getSize())
+                .totalPage(questions.getTotalPages())
+                .totalElements(questions.getTotalElements())
                 .build();
     }
 }
