@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 public interface QuestionCommandService {
 
     Question addQuestion(QuestionRequestDto.CreateQuestionRequestDto question);
+
+    void deleteQuestion(Long questionId);
 }

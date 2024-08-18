@@ -44,4 +44,12 @@ public class QuestionController {
 
         return ApiResponse.onSuccess(QuestionConverter.tofindAllQuestionResponseDto(questions));
     }
+
+    @DeleteMapping("/admin/{question-id}")
+    public ApiResponse<QuestionResponseDto.DeleteResponseDto> deleteQuestion(@PathVariable("question-id") Long questionId) {
+
+        questionCommandService.deleteQuestion(questionId);
+
+        return ApiResponse.onSuccess(QuestionConverter.toDeleteResponseDto(questionId));
+    }
 }

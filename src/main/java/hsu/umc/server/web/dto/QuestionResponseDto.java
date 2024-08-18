@@ -54,4 +54,14 @@ public class QuestionResponseDto {
         @Schema(description = " 마지막 페이지면 true")
         Boolean isLast;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class DeleteResponseDto {  //질문 삭제 응답 DTO
+        private Long questionId;
+        private String message;
+
+    }
 }

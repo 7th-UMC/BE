@@ -52,4 +52,11 @@ public class QuestionConverter {
                 .totalElements(questions.getTotalElements())
                 .build();
     }
+
+    public static QuestionResponseDto.DeleteResponseDto toDeleteResponseDto(Long questionId) {
+        return QuestionResponseDto.DeleteResponseDto.builder()
+                .questionId(questionId)
+                .message("삭제 성공")
+                .build();
+    }
 }
