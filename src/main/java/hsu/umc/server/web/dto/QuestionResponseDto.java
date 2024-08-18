@@ -21,6 +21,15 @@ public class QuestionResponseDto {
         private LocalDateTime createdAt;//생성 일자
 
     }
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UpdateResponseDto {  //질문 생성 응답 DTO
+        private Long questionId; //질문 ID
+        private LocalDateTime updatedAt;//생성 일자
+
+    }
 
     @Builder
     @Getter

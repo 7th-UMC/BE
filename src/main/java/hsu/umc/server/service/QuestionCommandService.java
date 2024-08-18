@@ -10,4 +10,6 @@ public interface QuestionCommandService {
     Question addQuestion(QuestionRequestDto.CreateQuestionRequestDto question);
 
     void deleteQuestion(Long questionId);
+
+    Question updateQuestion(Long questionId, QuestionRequestDto.CreateQuestionRequestDto requestDto);
 }

@@ -27,6 +27,13 @@ public class QuestionConverter {
                 .build();
     }
 
+    public static QuestionResponseDto.UpdateResponseDto toUpdateResponseDto(Question question) {
+        return QuestionResponseDto.UpdateResponseDto.builder()
+                .questionId(question.getQuestionId())
+                .updatedAt(question.getUpdatedAt())
+                .build();
+    }
+
     public static QuestionResponseDto.SearchResponseDto toSearchResponseDto(Question question) {
         return QuestionResponseDto.SearchResponseDto.builder()
                 .title(question.getTitle())

@@ -32,4 +32,14 @@ public class QuestionCommandServiceImpl implements QuestionCommandService{
 
         questionRepository.delete(findQuestion);
     }
+
+    @Override
+    @Transactional
+    public Question updateQuestion(Long questionId, QuestionRequestDto.CreateQuestionRequestDto requestDto) {
+        Question findquestion = questionRepository.findById(questionId)
+                .orElseThrow(() -> new QuestionHandler(ErrorStatus.QUESTION_NOT_FOUND));
+
+        findquestion.update(requestDto);
+        return findquestion;
+    }
 }

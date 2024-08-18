@@ -4,6 +4,7 @@ import hsu.umc.server.apipayload.code.status.ErrorStatus;
 import hsu.umc.server.apipayload.exception.handler.QuestionHandler;
 import hsu.umc.server.entity.Question;
 import hsu.umc.server.repository.QuestionRepository;
+import hsu.umc.server.web.dto.QuestionRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,4 +31,6 @@ public class QuestionQueryServiceImpl implements QuestionQueryService{
         PageRequest pageRequest = PageRequest.of(page, 10);
         return questionRepository.findAll(pageRequest);
     }
+
+
 }

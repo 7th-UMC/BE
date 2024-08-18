@@ -52,4 +52,13 @@ public class QuestionController {
 
         return ApiResponse.onSuccess(QuestionConverter.toDeleteResponseDto(questionId));
     }
+
+    @PatchMapping("/admin/{question-id}")
+    public ApiResponse<QuestionResponseDto.UpdateResponseDto> updateQuestion(@PathVariable("question-id") Long questionId,
+                                                                             @RequestBody QuestionRequestDto.CreateQuestionRequestDto requestDto) {
+
+        Question question = questionCommandService.updateQuestion(questionId, requestDto);
+
+        return ApiResponse.onSuccess(QuestionConverter.toUpdateResponseDto(question));
+    }
 }
