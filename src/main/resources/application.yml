@@ -1,5 +1,6 @@
 spring:
   profiles:
+    include: dev, local
     active: dev
 #    active: ${spring.profiles.active}
 
