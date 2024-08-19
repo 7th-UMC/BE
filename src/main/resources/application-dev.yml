@@ -9,5 +9,10 @@ spring:
     hibernate:
       ddl-auto: update
 
-
+  web:
+    cors:
+      allowed-origins: "http://localhost:5173"
+      allowed-methods: GET, POST, PATCH, DELETE, PUT
+      allowed-headers: "*"
+      allow-credentials: true
 
