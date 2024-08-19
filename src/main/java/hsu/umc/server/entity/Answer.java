@@ -1,5 +1,6 @@
 package hsu.umc.server.entity;
 
+import hsu.umc.server.web.dto.AnswerRequestDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,4 +18,7 @@ public class Answer extends BaseEntity{
     private Long answerId;
 
     private String content;
+    public void update(AnswerRequestDto.UpdateRequestDto request){
+        this.content = request.getContent();
+    }
 }
