@@ -37,6 +37,14 @@ public class Question extends BaseEntity {
     @JoinColumn(name = "answer_id")
     private Answer answer;
 
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public void setAnswered(Boolean answered) {
+        isAnswered = answered;
+    }
+
     public void update(QuestionRequestDto.CreateQuestionRequestDto request) {
         this.title = request.getTitle();
         this.content = request.getContent();

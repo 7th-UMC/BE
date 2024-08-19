@@ -1,7 +1,5 @@
 package hsu.umc.server.web.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import hsu.umc.server.entity.Answer;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +29,7 @@ public class QuestionResponseDto {
 
     }
 
+
     @Builder
     @Getter
     @NoArgsConstructor
@@ -38,9 +37,8 @@ public class QuestionResponseDto {
     public static class SearchResponseDto {  //질문 생성 응답 DTO
         private String title;//제목
         private String content;//내용
-        @JsonProperty("isAnswered")
         private boolean isAnswered;//답변 여부
-        private Answer answer;//답변
+        private AnswerResponseDto.ReadResponseDto answer;//답변
         private LocalDateTime createdAt;//생성 일자
         private LocalDateTime updatedAt;//수정 일자
     }
@@ -62,6 +60,17 @@ public class QuestionResponseDto {
         Boolean isFirst;
         @Schema(description = " 마지막 페이지면 true")
         Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class findAllResponseDto{
+        private String title;//제목
+        private boolean isAnswered;//답변 여부
+
+
     }
 
     @Builder

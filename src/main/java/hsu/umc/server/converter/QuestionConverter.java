@@ -2,6 +2,7 @@ package hsu.umc.server.converter;
 
 import hsu.umc.server.entity.Category;
 import hsu.umc.server.entity.Question;
+import hsu.umc.server.web.dto.AnswerResponseDto;
 import hsu.umc.server.web.dto.QuestionRequestDto;
 import hsu.umc.server.web.dto.QuestionResponseDto;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,13 @@ public class QuestionConverter {
                 .title(question.getTitle())
                 .content(question.getContent())
                 .isAnswered(question.getIsAnswered())
-                .answer(question.getAnswer())
+                .answer(question.getAnswer() != null ?
+                        AnswerResponseDto.ReadResponseDto.builder()
+                                .answerId(question.getAnswer().getAnswerId())
+                                .content(question.getAnswer().getContent())
+                                .createdAt(question.getAnswer().getCreatedAt())
+                                .updatedAt(question.getAnswer().getUpdatedAt())
+                                .build() : null)
                 .createdAt(question.getCreatedAt())
                 .updatedAt(question.getUpdatedAt())
                 .build();
@@ -65,5 +72,15 @@ public class QuestionConverter {
                 .questionId(questionId)
                 .message("삭제 성공")
                 .build();
+    }
+
+    public static List<QuestionResponseDto.findAllResponseDto> tofindAllResponseDto(List<Question> questions) {
+        return questions.stream()
+                .map(question -> QuestionResponseDto.findAllResponseDto.builder()
+                        .isAnswered(question.getIsAnswered())
+                        .title(question.getTitle())
+                        .build()
+                )
+                .collect(Collectors.toList());
     }
 }

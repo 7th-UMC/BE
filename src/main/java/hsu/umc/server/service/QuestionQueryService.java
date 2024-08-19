@@ -5,11 +5,14 @@ import hsu.umc.server.web.dto.QuestionRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 public interface QuestionQueryService {
     Question searchQuestion(Long questionId);
 
     Page<Question> searchQuestionList(Integer page);
+    List<Question> searchQuestions();
 
 
 }

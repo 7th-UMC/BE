@@ -17,7 +17,8 @@ public enum ErrorStatus implements ErrorCode {
     _NOT_FOUND(HttpStatus.NOT_FOUND, "COMMON404", "요청을 찾을 수 없습니다."),
 
     //질문 관련 응답
-    QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND, "QUESTION4001", "아이디에 해당하는 질문을 찾을 수 업습니다.");
+    QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND, "QUESTION4001", "아이디에 해당하는 질문을 찾을 수 업습니다."),
+    ANSWER_NOT_FOUND(HttpStatus.NOT_FOUND, "ANSWER4001", "아이디에 해당하는 답변을 찾을 수 업습니다.");
 
 
     private final HttpStatus httpStatus;
