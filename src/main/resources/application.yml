@@ -1,8 +1,13 @@
 spring:
-  profiles:
-    active: dev
-#    active: ${spring.profiles.active}
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${rds.hostname}:${rds.port}/${rds.db.name}
+    username: ${aws.db.username}
+    password: ${aws.db.password}
 
-api:
-  server:
-    url: http://localhost:8080
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
+
