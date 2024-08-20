@@ -72,6 +72,7 @@ public class QuestionResponseDto {
         private Long questionId;
         private int categoryId;
         private boolean isAnswered;//답변 여부
+        private LocalDateTime createdAt;
 
 
     }
