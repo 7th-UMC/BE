@@ -37,6 +37,7 @@ public class QuestionResponseDto {
     public static class SearchResponseDto {  //질문 생성 응답 DTO
         private String title;//제목
         private String content;//내용
+        private int categoryId;
         private boolean isAnswered;//답변 여부
         private AnswerResponseDto.ReadResponseDto answer;//답변
         private LocalDateTime createdAt;//생성 일자

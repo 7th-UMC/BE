@@ -37,6 +37,7 @@ public class QuestionConverter {
 
     public static QuestionResponseDto.SearchResponseDto toSearchResponseDto(Question question) {
         return QuestionResponseDto.SearchResponseDto.builder()
+                .categoryId(question.getCategory().getValue())
                 .title(question.getTitle())
                 .content(question.getContent())
                 .isAnswered(question.getIsAnswered())
