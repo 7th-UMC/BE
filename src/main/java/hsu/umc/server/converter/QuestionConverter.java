@@ -78,7 +78,7 @@ public class QuestionConverter {
         return questions.stream()
                 .map(question -> QuestionResponseDto.findAllResponseDto.builder()
                         .isAnswered(question.getIsAnswered())
-                        .categoryId(question.getQuestionId())
+                        .categoryId(question.getCategory().getValue())
                         .title(question.getTitle())
                         .build()
                 )
