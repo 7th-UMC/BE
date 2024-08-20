@@ -68,7 +68,7 @@ public class QuestionResponseDto {
     @AllArgsConstructor
     public static class findAllResponseDto{
         private String title;//제목
-        private Long categoryId;
+        private int categoryId;
         private boolean isAnswered;//답변 여부
 
 
