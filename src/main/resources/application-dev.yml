@@ -16,3 +16,17 @@ spring:
       allowed-headers: "*"
       allow-credentials: true
 
+cloud:
+  aws:
+    s3:
+      bucket: umc-7th
+      path:
+        photo : photos
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+    credentials:
+      accessKey: ${aws.access.key.id}
+      secretKey: ${aws.secret.access.key}
+
