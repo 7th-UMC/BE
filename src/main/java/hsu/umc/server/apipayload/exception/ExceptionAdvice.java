@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.LinkedHashMap;
@@ -119,4 +120,16 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
                 request
         );
     }
+
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers,
+                                                             HttpStatusCode status, WebRequest request) {
+        if (ex instanceof MaxUploadSizeExceededException) {
+            ErrorStatus errorStatus = ErrorStatus._PAYLOAD_TOO_LARGE;
+            ApiResponse<Object> customBody = ApiResponse.onFailure(errorStatus.getCode(), errorStatus.getMessage(), null);
+            return new ResponseEntity<>(customBody, headers, errorStatus.getHttpStatus());
+        }
+        return super.handleExceptionInternal(ex, body, headers, status, request);
+    }
+
 }

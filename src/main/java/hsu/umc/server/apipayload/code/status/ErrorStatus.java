@@ -20,7 +20,8 @@ public enum ErrorStatus implements ErrorCode {
     INVALID_CREDENTIALS(HttpStatus.NOT_FOUND, "USER4002", "유저의 비밀번호가 맞지 않습니다."),
     //질문 관련 응답
     QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND, "QUESTION4001", "아이디에 해당하는 질문을 찾을 수 업습니다."),
-    ANSWER_NOT_FOUND(HttpStatus.NOT_FOUND, "ANSWER4001", "아이디에 해당하는 답변을 찾을 수 업습니다.");
+    ANSWER_NOT_FOUND(HttpStatus.NOT_FOUND, "ANSWER4001", "아이디에 해당하는 답변을 찾을 수 업습니다."),
+    _PAYLOAD_TOO_LARGE(HttpStatus.PAYLOAD_TOO_LARGE, "PAYLOAD4001","파일 크기가 허용된 최대 크기를 초과했습니다.");
 
 
     private final HttpStatus httpStatus;
