@@ -26,6 +26,7 @@ public class AmazonS3Manager {
         return amazonS3.getUrl(amazonConfig.getBucket(),keyName).toString();
     }
     public String generatePhotoKeyName(Uuid uuid) {
-        return amazonConfig.getPhotoPath() + '/' + uuid.getUuid();
+        return amazonConfig.getPhotoPath() + '/' + uuid.getUuid() + ".png";
     }
+
 }
