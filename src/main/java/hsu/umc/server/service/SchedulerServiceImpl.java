@@ -6,6 +6,7 @@ import hsu.umc.server.entity.Uuid;
 import hsu.umc.server.repository.PhotoRepository;
 import hsu.umc.server.repository.UuidRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -24,10 +26,12 @@ public class SchedulerServiceImpl implements SchedulerService{
     @Scheduled(cron = "${cloud.aws.cron}")
     @Transactional
     public void deletePhoto() {
+        log.info("Scheduled task started for deleting photos");
         List<Photo> photoList = photoRepository.findAll();
         photoList.stream()
                 .filter(photo -> Duration.between(photo.getCreatedAt(), LocalDateTime.now()).toMinutes() >= 1)
                 .forEach(photo -> {
+                    log.info("Processing photo with URL: {}", photo.getPhotoUrl());
                     s3Manager.deleteFile(photo.getPhotoUrl());
 
                     String uuidUrl = extractUuidFromPhotoUrl(photo.getPhotoUrl());
