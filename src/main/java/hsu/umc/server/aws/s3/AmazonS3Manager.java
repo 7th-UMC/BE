@@ -1,6 +1,7 @@
 package hsu.umc.server.aws.s3;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import hsu.umc.server.config.AmazonConfig;
@@ -24,6 +25,9 @@ public class AmazonS3Manager {
         metadata.setContentLength(file.getSize());
         amazonS3.putObject(new PutObjectRequest(amazonConfig.getBucket(), keyName, file.getInputStream(), metadata));
         return amazonS3.getUrl(amazonConfig.getBucket(),keyName).toString();
+    }
+    public void deleteFile(String photoUrl){
+        amazonS3.deleteObject(new DeleteObjectRequest(amazonConfig.getBucket(),photoUrl));
     }
     public String generatePhotoKeyName(Uuid uuid) {
         return amazonConfig.getPhotoPath() + '/' + uuid.getUuid() + ".png";
