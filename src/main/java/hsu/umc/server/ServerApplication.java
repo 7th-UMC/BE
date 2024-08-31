@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.util.TimeZone;
+
 @OpenAPIDefinition(
 		servers = {
 				@Server(url = "/",description = "Dev Server URL")
@@ -16,6 +18,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class ServerApplication {
 
 	public static void main(String[] args) {
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
 		SpringApplication.run(ServerApplication.class, args);
 	}
 
