@@ -28,7 +28,13 @@ public class AmazonS3Manager {
     }
     public void deleteFile(String photoUrl){
         String s3Key = photoUrl.replace("https://umc-7th.s3.ap-northeast-2.amazonaws.com/", "");
-        amazonS3.deleteObject(new DeleteObjectRequest(amazonConfig.getBucket(), s3Key));
+        log.info("삭제할 s3 키 = {}", s3Key);
+        try {
+            amazonS3.deleteObject(new DeleteObjectRequest(amazonConfig.getBucket(), s3Key));
+            log.info("Successfully deleted file from S3 with key: {}", s3Key);
+        } catch (Exception e) {
+            log.error("Error deleting file from S3 with key: {}", s3Key, e);
+        }
     }
     public String generatePhotoKeyName(Uuid uuid) {
         return amazonConfig.getPhotoPath() + '/' + uuid.getUuid() + ".png";
