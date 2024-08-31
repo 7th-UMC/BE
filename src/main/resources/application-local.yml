@@ -32,6 +32,7 @@ cloud:
       static: ap-northeast-2
     stack:
       auto: false
+    cron: "0 */2 * * * *"
     credentials:
       accessKey: ${aws.access.key.id}
       secretKey: ${aws.secret.access.key}
