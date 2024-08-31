@@ -26,7 +26,7 @@ public class SchedulerServiceImpl implements SchedulerService{
     public void deletePhoto() {
         List<Photo> photoList = photoRepository.findAll();
         photoList.stream()
-                .filter(photo -> Duration.between(photo.getCreatedAt(), LocalDateTime.now()).toHours()>=2)
+                .filter(photo -> Duration.between(photo.getCreatedAt(), LocalDateTime.now()).toMinutes() >= 1)
                 .forEach(photo -> {
                     s3Manager.deleteFile(photo.getPhotoUrl());
 
