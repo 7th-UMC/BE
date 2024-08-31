@@ -23,7 +23,7 @@ public class SchedulerServiceImpl implements SchedulerService{
     private final PhotoRepository photoRepository;
     private final UuidRepository uuidRepository;
     private final AmazonS3Manager s3Manager;
-    @Scheduled(cron = "0 0/1 * * * ?", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 6 * * ?", zone = "Asia/Seoul")
     @Transactional
     public void deletePhoto() {
         log.info("Scheduled task started for deleting photos");
@@ -41,7 +41,7 @@ public class SchedulerServiceImpl implements SchedulerService{
                     uuidRepository.delete(uuid);
                 });
     }
-    private String extractUuidFromPhotoUrl(String photoUrl){
+    public String extractUuidFromPhotoUrl(String photoUrl){
         String[] parts = photoUrl.split("/");
         String uuid = parts[parts.length-1];
         System.out.println(uuid);
