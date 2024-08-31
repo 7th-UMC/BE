@@ -27,7 +27,8 @@ public class AmazonS3Manager {
         return amazonS3.getUrl(amazonConfig.getBucket(),keyName).toString();
     }
     public void deleteFile(String photoUrl){
-        amazonS3.deleteObject(new DeleteObjectRequest(amazonConfig.getBucket(),photoUrl));
+        String s3Key = photoUrl.replace("https://umc-7th.s3.ap-northeast-2.amazonaws.com/", "");
+        amazonS3.deleteObject(new DeleteObjectRequest(amazonConfig.getBucket(), s3Key));
     }
     public String generatePhotoKeyName(Uuid uuid) {
         return amazonConfig.getPhotoPath() + '/' + uuid.getUuid() + ".png";
