@@ -23,7 +23,7 @@ public class SchedulerServiceImpl implements SchedulerService{
     private final PhotoRepository photoRepository;
     private final UuidRepository uuidRepository;
     private final AmazonS3Manager s3Manager;
-    @Scheduled(cron = "*/10 * * * * *", zone = "Asia/Seoul")
+    @Scheduled(cron = "0 0 18 * * *", zone = "Asia/Seoul")
     @Transactional
     public void deletePhoto() {
             log.info("deletePhoto () : call");
