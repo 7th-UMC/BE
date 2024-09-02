@@ -23,10 +23,10 @@ public class SchedulerServiceImpl implements SchedulerService{
     private final PhotoRepository photoRepository;
     private final UuidRepository uuidRepository;
     private final AmazonS3Manager s3Manager;
-    @Scheduled(cron = "0 0 6 * * ?", zone = "Asia/Seoul")
+    @Scheduled(cron = "*/10 * * * * *", zone = "Asia/Seoul")
     @Transactional
     public void deletePhoto() {
-        log.info("Scheduled task started for deleting photos");
+            log.info("deletePhoto () : call");
         List<Photo> photoList = photoRepository.findAll();
         photoList.stream()
                 .filter(photo -> Duration.between(photo.getCreatedAt(), LocalDateTime.now()).toMinutes() >= 1)
